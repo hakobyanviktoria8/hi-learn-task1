@@ -1,41 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-function App() {
-const[bool, setBool] = useState(true)
-
-const [matrix,setMatrix] = useState([
-  [0,0,0,0,0],
-  [0,0,0,0,0],
-  [0,0,0,0,0],
-  [0,0,0,0,0],
-  [0,0,0,0,0]
-])
-
-const handleClick =(id)=>{
-  for(let i = 4; i>= 0;i--){
-    if(matrix[i][id] === 0){
-      let newMatrix = matrix;
-      newMatrix[i][id] = bool ? 1 : 2   
-      setMatrix([...newMatrix])
-      setBool(!bool)
-      break
+function App() {  
+  const[bool, setBool] = useState(true)
+  
+  const [matrix,setMatrix] = useState([
+    [0,0,0,0,0,0],
+    [0,0,0,0,0,0],
+    [0,0,0,0,0,0],
+    [0,0,0,0,0,0],
+    [0,0,0,0,0,0]
+  ])
+    
+  const handleClick =(id)=>{
+    for(let i = 4; i>= 0;i--){
+      if(matrix[i][id] === 0){
+        let newMatrix = matrix;
+        newMatrix[i][id] = bool ? 1 : 2   
+        setMatrix([...newMatrix])
+        setBool(!bool)
+        break
+      }
     }
   }
-}
-console.log("matrix", matrix)
 
-
+  const bottons = [...Array(matrix[0].length)].map((item,id) => 
+    <button key={id} onClick={()=>handleClick(id)}></button> 
+  )  
 
   return (
     <div className="App">
-      <div>            
-        <button onClick={e=>handleClick(0)}>+</button>       
-        <button onClick={e=>handleClick(1)}>+</button>       
-        <button onClick={e=>handleClick(2)}>+</button>       
-        <button onClick={e=>handleClick(3)}>+</button>       
-        <button onClick={e=>handleClick(4)}>+</button>       
+      <div>   
+        {bottons}
       </div>
       {
         matrix?.map((row,idxRow)=>   
