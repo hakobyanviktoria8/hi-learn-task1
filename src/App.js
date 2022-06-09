@@ -13,17 +13,19 @@ function App() {
   const[pl1Card, setPl1Card] = useState(matrix.length * matrix[0].length/2)
   const[pl2Card, setPl2Card] = useState(matrix.length * matrix[0].length/2)
   
-    
-  const handleClick =(id)=>{
+  const handleCheck = () => {
+    console.log(12);
+  }
+
+  const handleClick = (id) => {
     for(let i = 4; i>= 0;i--){
       if(matrix[i][id] === 0){
         let newMatrix = matrix;
         newMatrix[i][id] = bool ? 1 : 2   
         setMatrix([...newMatrix])
         setBool(!bool)
-
         matrix[i][id]===1 ? setPl1Card(item=>item-1) : setPl2Card(item=>item-1)
-
+        handleCheck()
         break
       }
     }
